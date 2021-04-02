@@ -21,8 +21,9 @@ public class TitleDelServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
 		
-		int no = Integer.parseInt(request.getParameter("titleNo").trim());
+		int no = Integer.parseInt(request.getParameter("no").trim());
 		System.out.println(no);
 		service.delTitle(no);
 		
