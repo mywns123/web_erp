@@ -83,9 +83,10 @@ public class DepartmentDaoImpl implements DepartmentDao {
 
 	@Override
 	public int updateDepartment(Department department) {
-		String sql = "update  Department  set DeptName =? where Deptno =?";
+		String sql = "update  Department  set DeptName =?, floor=? where Deptno =?";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-			pstmt.setString(1, department.getDeptName());
+			pstmt.setString(1, department.getDeptName());			
+			pstmt.setInt(3, department.getFloor());
 			pstmt.setInt(2, department.getDeptno());
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {

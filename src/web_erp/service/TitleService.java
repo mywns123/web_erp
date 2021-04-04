@@ -26,11 +26,12 @@ public class TitleService {
 	public Title showTitle(Title title) {
 		return dao.selectTitleByNo(title);
 	}
-
-	public int delTitle(int titleNo) {
-		return dao.deleteTitle(titleNo);		
+	
+	public int updateTitle(Title title) {
+		return dao.updateTitle(title);
 	}
 	
-	
-	
+	public int delTitle(int titleNo) {
+		return dao.deleteTitle(titleNo);		
+	}	
 }

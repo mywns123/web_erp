@@ -10,26 +10,31 @@ import javax.servlet.http.HttpServletResponse;
 import web_erp.dto.Title;
 import web_erp.service.TitleService;
 
-@WebServlet("/TitleGetServlet")
-public class TitleGetServlet extends HttpServlet {
+@WebServlet("/TitleUpdateServlet")
+public class TitleUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private TitleService service;
-	
-    public TitleGetServlet() {
+
+    public TitleUpdateServlet() {
     	service = new TitleService();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8");	
-		/* TitleGetServlet?titleNo=${title.no} */
-		int no = Integer.parseInt(request.getParameter("titleNo").trim());
-		Title title = service.showTitle(new Title(no));		
-		request.setAttribute("title", title);
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
 		
-		request.getRequestDispatcher("titleinfo.jsp").forward(request, response);
+		int no = Integer.parseInt(request.getParameter("tno").trim());
+		String name = request.getParameter("tname");		
+		
+		Title title = new Title(no,name);
+		
+		service.updateTitle(title);
+		
+		response.sendRedirect("TitleListServlet");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
+
 }

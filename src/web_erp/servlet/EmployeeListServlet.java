@@ -1,32 +1,32 @@
 package web_erp.servlet;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import web_erp.dto.Title;
-import web_erp.service.TitleService;
+import web_erp.dto.Employee;
+import web_erp.service.EmployeeService;
 
-@WebServlet("/TitleGetServlet")
-public class TitleGetServlet extends HttpServlet {
+@WebServlet("/EmployeeListServlet")
+public class EmployeeListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private TitleService service;
-	
-    public TitleGetServlet() {
-    	service = new TitleService();
+	private EmployeeService service;
+ 
+    public EmployeeListServlet() {   
+    	service = new EmployeeService();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8");	
-		/* TitleGetServlet?titleNo=${title.no} */
-		int no = Integer.parseInt(request.getParameter("titleNo").trim());
-		Title title = service.showTitle(new Title(no));		
-		request.setAttribute("title", title);
+		response.setContentType("text/html;charset=UTF-8");			
+		List<Employee> list = service.showEmployees();
 		
-		request.getRequestDispatcher("titleinfo.jsp").forward(request, response);
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("employeeList.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

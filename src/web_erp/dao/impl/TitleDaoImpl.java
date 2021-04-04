@@ -29,7 +29,7 @@ public class TitleDaoImpl implements TitleDao {
 	public List<Title> selectTitleByAll() {
 		String sql = "select tno,tname from title";
 		try (PreparedStatement pstmt = con.prepareStatement(sql);
-				ResultSet rs = pstmt.executeQuery()) {
+				ResultSet rs = pstmt.executeQuery()) {			
 			if (rs.next()) {
 				List<Title> list = new ArrayList<>();
 				do {

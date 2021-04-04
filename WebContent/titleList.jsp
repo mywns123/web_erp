@@ -18,10 +18,9 @@
 		<tbody>
 		<c:forEach var="title" items="${list}">
 			<tr>
-				<td>${title.no}</td>
+				<td><a href="TitleGetServlet?titleNo=${title.no}">${title.no}</a></td>
 				<td><a href="TitleGetServlet?titleNo=${title.no}">${title.name}</a></td>
-			</tr>
-			
+			</tr>			
 		</c:forEach>
 		</tbody>
 		<tfoot>
@@ -29,9 +28,5 @@
 				<td colspan="2"><a href="titleInput.jsp">직책 추가</a></td>
 		</tfoot>
 	</table>
-	
-	
-	
-		
 	</body>
 </html>

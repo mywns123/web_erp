@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<c:out value="${con}"></c:out>
+	<%-- <c:out value="${con}"></c:out> --%>
 	<fieldset>
 		<legend>ERP</legend>
 		<ul>

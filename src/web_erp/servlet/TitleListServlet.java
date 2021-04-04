@@ -24,7 +24,7 @@ public class TitleListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");			
 		List<Title> list = service.showTitles();
-		list.stream().forEach(System.out::println);
+//		list.stream().forEach(System.out::println);
 		
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("titleList.jsp").forward(request, response);

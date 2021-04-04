@@ -7,6 +7,7 @@ public class Employee {
 	private Employee manager;
 	private int salary;
 	private Department dept ;
+	
 	public Employee() {
 		// TODO Auto-generated constructor stub
 	}

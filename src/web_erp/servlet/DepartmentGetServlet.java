@@ -1,35 +1,37 @@
 package web_erp.servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import web_erp.dto.Title;
-import web_erp.service.TitleService;
+import web_erp.dto.Department;
+import web_erp.service.DepartmentService;
 
-@WebServlet("/TitleGetServlet")
-public class TitleGetServlet extends HttpServlet {
+@WebServlet("/DepartmentGetServlet")
+public class DepartmentGetServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private TitleService service;
+	private DepartmentService service;
 	
-    public TitleGetServlet() {
-    	service = new TitleService();
+    public DepartmentGetServlet() {
+    	service= new DepartmentService();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");	
-		/* TitleGetServlet?titleNo=${title.no} */
-		int no = Integer.parseInt(request.getParameter("titleNo").trim());
-		Title title = service.showTitle(new Title(no));		
-		request.setAttribute("title", title);
-		
-		request.getRequestDispatcher("titleinfo.jsp").forward(request, response);
-	}
 
+		int deptno = Integer.parseInt(request.getParameter("deptno").trim());
+		Department department = service.showDepartment(new Department(deptno));		
+		request.setAttribute("department", department);
+		
+		request.getRequestDispatcher("departmentinfo.jsp").forward(request, response);	
+	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
+
 }
