@@ -21,9 +21,6 @@ public class EmployeeImpl implements EmployeeDao {
 	}
 
 	public static EmployeeImpl getInstance() {
-		if(instance == null) {
-			instance = new EmployeeImpl();
-		}
 		return instance;
 	}
 
@@ -32,8 +29,7 @@ public class EmployeeImpl implements EmployeeDao {
 	}
 	@Override
 	public List<Employee> selectEmployeeByAll() {
-		String sql = "select empNo,empName,title_no,title_name,manager_no,manager_name,salary,dept_no,dept_name,floor"
-				   + " from vw_full_employee";
+		String sql = "select  empNo, empName, title, manager, salary, dept from employee";
 		try (PreparedStatement std = con.prepareStatement(sql);
 				ResultSet rs = std.executeQuery()) {
 			if (rs.next()) {
@@ -52,27 +48,10 @@ public class EmployeeImpl implements EmployeeDao {
 	private Employee getEmployee(ResultSet rs) throws SQLException {
 		int empNo = rs.getInt("empno");
 		String empName = rs.getString("empname");
-		Title title = new Title(rs.getInt("title_no"));		
-		Employee manager = new Employee(rs.getInt("manager_no"));		
+		Title title = new Title(rs.getInt("title"));		
+		Employee manager = new Employee(rs.getInt("manager"));		
 		int salary = rs.getInt("salary");
-		Department dept = new Department(rs.getInt("dept_no"));
-		try{
-			title.setName(rs.getString("title_name"));
-		}catch (SQLException e) {}
-		
-		
-		try{
-			manager.setEmpName(rs.getNString("manager_name"));
-		}catch (SQLException e) {}
-		
-		try{
-			dept.setDeptName(rs.getNString("dept_name"));
-		}catch (SQLException e) {}
-		
-		try{
-			dept.setFloor(rs.getInt("floor"));
-		}catch (SQLException e) {}		
-		
+		Department dept = new Department(rs.getInt("dept"));		
 		return new Employee(empNo, empName, title, manager, salary, dept);
 	}
 

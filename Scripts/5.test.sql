@@ -1,5 +1,5 @@
 select  * from title; 
-select  * from employee;
+select  empNo, empName, title, manager, salary, dept from employee;
 select  * from department;
 
 select *
